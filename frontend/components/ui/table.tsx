@@ -52,7 +52,7 @@ const TableRow = (
     <motion.tr
       {...props}
       className={cn(
-        'border-b border-[#080A0B] transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted odd:bg-[#0C0E10] even:bg-[#111315]',
+        'border-b border-elevation/background transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted odd:bg-elevation/background1 even:bg-elevation/background2',
       )}
     />
   )

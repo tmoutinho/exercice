@@ -26,7 +26,7 @@ const config: Config = {
         // Text
         'text/primary': '#F7F7F8',
         'text/secondary': '#ABAFB4',
-        'text/disabled': '#0BAFB4',
+        'text/disabled': '#ABAFB4',
         'text/buttonText': '#FFFFFF',
 
         // States

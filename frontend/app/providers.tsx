@@ -16,7 +16,7 @@ const uri = process.env.NEXT_PUBLIC_HASURA_ENDPOINT
 const httpLink = new HttpLink({
   uri: `http://${uri}`,
   headers: {
-    'x-hasura-admin-secret': 'mysecretkey',
+    'x-hasura-admin-secret': process.env.NEXT_PUBLIC_HASURA_SECRET as string,
   },
 })
 
@@ -26,7 +26,8 @@ const wsLink = new WebSocketLink({
     reconnect: true,
     connectionParams: {
       headers: {
-        'x-hasura-admin-secret': 'mysecretkey',
+        'x-hasura-admin-secret': process.env
+          .NEXT_PUBLIC_HASURA_SECRET as string,
       },
     },
   },

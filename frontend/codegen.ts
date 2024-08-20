@@ -6,7 +6,8 @@ const config: CodegenConfig = {
     {
       'http://localhost:8080/v1/graphql': {
         headers: {
-          'x-hasura-access-key': 'mysecretkey',
+          'x-hasura-access-key': process.env
+            .NEXT_PUBLIC_HASURA_SECRET as string,
         },
       },
     },

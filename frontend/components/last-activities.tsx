@@ -31,109 +31,114 @@ export default function LastActivities() {
         Last activities
       </h1>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Activities</TableHead>
-            <TableHead>Points</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>TXID</TableHead>
-            <TableHead className="text-right"></TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <AnimatePresence>
-            {data?.logs.map((log) => {
-              const date = new Date(log.block_timestamp) // Example timestamp
-              const formattedDate = format(date, 'dd.MM.yyyy')
-              const formattedTime = format(date, 'HH:mm:ss')
+      {loading ? (
+        <div className="animate-pulse rounded-md bg-elevation/background2 h-[433px]"></div>
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Activities</TableHead>
+              <TableHead>Points</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead>TXID</TableHead>
+              <TableHead className="text-right"></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <AnimatePresence>
+              {data?.logs.map((log) => {
+                const date = new Date(log.block_timestamp) // Example timestamp
+                const formattedDate = format(date, 'dd.MM.yyyy')
+                const formattedTime = format(date, 'HH:mm:ss')
 
-              return (
-                <TableRow
-                  key={log.block_number}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  layout
-                >
-                  <TableCell className="text-text/primary font-medium leading-5 flex items-center gap-1">
-                    {isBridge(log) ? (
-                      <>
-                        <BridgeIcon />
-                        Bridged
-                      </>
-                    ) : (
-                      <>
-                        <TransactionIcon />
-                        Transaction
-                      </>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <div className="bg-states/success/elevation1/10 h-6 text-states/success inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
-                      +
-                      {log.decoded['amount0In'] !== '0'
-                        ? log.decoded['amount0In']
-                        : log.decoded['amount1In']}
-                    </div>
-                  </TableCell>
-                  <TableCell className="space-x-1">
-                    <span>{formattedDate}</span>
-                    <div className="bg-elevation/background3 h-6 text-text/secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
-                      {formattedTime}
-                    </div>
-                  </TableCell>
-                  <TableCell className="space-x-2">
-                    <span>
-                      {log.transaction_hash.slice(0, 4)}...
-                      {log.transaction_hash.slice(-4)}
-                    </span>
-                    <button className="bg-elevation/background3 h-6 text-text/secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
-                      Copy
-                    </button>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <a href="#">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14 8.66667V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H7.33333"
-                          stroke="#ABAFB4"
-                          strokeWidth="1.33333"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M14 2L8 8"
-                          stroke="#ABAFB4"
-                          strokeWidth="1.33333"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M10 2H14V6"
-                          stroke="#ABAFB4"
-                          strokeWidth="1.33333"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </a>
-                  </TableCell>
-                </TableRow>
-              )
-            })}
-          </AnimatePresence>
-        </TableBody>
-      </Table>
+                return (
+                  <TableRow
+                    key={log.block_number}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    layout
+                  >
+                    <TableCell className="text-text/primary font-medium leading-5 flex items-center gap-1">
+                      {isBridge(log) ? (
+                        <>
+                          <BridgeIcon />
+                          Bridged
+                        </>
+                      ) : (
+                        <>
+                          <TransactionIcon />
+                          Transaction
+                        </>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <Badge className="bg-states/success/elevation1/10 h-6 text-states/success inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
+                        +
+                        {log.decoded['amount0In'] !== '0'
+                          ? log.decoded['amount0In']
+                          : log.decoded['amount1In']}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="space-x-1 items-center">
+                      <span>{formattedDate}</span>
+                      <Badge className="bg-elevation/background3 h-6 text-text/secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
+                        {formattedTime}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="space-x-2">
+                      <span>
+                        {log.transaction_hash.slice(0, 4)}...
+                        {log.transaction_hash.slice(-4)}
+                      </span>
+                      <button className="bg-elevation/background3 h-6 text-text/secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
+                        Copy
+                      </button>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <a href="#">
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M14 8.66667V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H7.33333"
+                            stroke="#ABAFB4"
+                            strokeWidth="1.33333"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M14 2L8 8"
+                            stroke="#ABAFB4"
+                            strokeWidth="1.33333"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M10 2H14V6"
+                            stroke="#ABAFB4"
+                            strokeWidth="1.33333"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </a>
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
+            </AnimatePresence>
+          </TableBody>
+        </Table>
+      )}
     </div>
   )
 }
+
 function BridgeIcon() {
   return (
     <svg
