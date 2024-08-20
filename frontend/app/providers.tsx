@@ -55,9 +55,5 @@ const client = new ApolloClient({
 })
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return (
-    <Theme>
-      <ApolloProvider client={client}>{children}</ApolloProvider>
-    </Theme>
-  )
+  return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
