@@ -1,0 +1,11 @@
+subscription GetLogs($limit: Int!) {
+  logs(limit: $limit, order_by: { block_timestamp: desc }) {
+    address
+    block_number
+    block_timestamp
+    decoded
+    from
+    to
+    transaction_hash
+  }
+}
