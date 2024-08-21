@@ -308,12 +308,12 @@ function HowToEarn() {
         </h1>
 
         <div className="flex gap-2 items-center">
-          <div className="bg-elevation/background3 h-6 text-text/secondary w-full sm:w-auto inline-flex items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
+          <BadgeRadix className="bg-elevation/background3 h-6 text-text/secondary w-full sm:w-auto inline-flex items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
             1/3 Completed
-          </div>
-          <div className="bg-primary/disabled/20 h-6 text-primary/hover inline-flex w-full sm:w-auto items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
+          </BadgeRadix>
+          <BadgeRadix className="bg-primary/disabled/20 h-6 text-primary/hover inline-flex w-full sm:w-auto items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
             Total Earning: 3,000
-          </div>
+          </BadgeRadix>
         </div>
       </div>
 

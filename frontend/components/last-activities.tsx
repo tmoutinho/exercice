@@ -12,7 +12,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { format } from 'date-fns'
-import { Badge } from '@radix-ui/themes'
+import { Badge, Button } from '@radix-ui/themes'
 
 const isBridge = (log: Logs) => {
   return log.decoded['amount1In'] !== '0' && log.decoded['amount0Out'] !== '0'
@@ -91,9 +91,9 @@ export default function LastActivities() {
                         {log.transaction_hash.slice(0, 4)}...
                         {log.transaction_hash.slice(-4)}
                       </span>
-                      <button className="bg-elevation/background3 h-6 text-text/secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
+                      <Button className="bg-elevation/background3 h-6 text-text/secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors">
                         Copy
-                      </button>
+                      </Button>
                     </TableCell>
                     <TableCell className="text-right">
                       <a href="#">

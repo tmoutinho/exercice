@@ -1,6 +1,7 @@
 import BadgesCarrousel from '@/components/badges-carrousel'
 import CommunityBadges from '@/components/community-badges'
 import LastActivities from '@/components/last-activities'
+import { Button } from '@radix-ui/themes'
 import Image from 'next/image'
 
 export default function Home() {
@@ -38,10 +39,10 @@ export default function Home() {
           </div>
 
           <div className="flex gap-2">
-            <button className="h-10 rounded-full text-text/secondary px-4 border border-primary/hover text-sm font-semibold hidden sm:block">
+            <Button className="h-10 rounded-full text-text/secondary px-4 ring-1 ring-primary/hover text-sm font-semibold hidden sm:block">
               How It Works
-            </button>
-            <button className="h-10 px-3 gap-2 rounded-md bg-elevation/background3 text-text/primary font-semibold text-sm flex items-center justify-center">
+            </Button>
+            <Button className="h-10 px-3 gap-2 rounded-md bg-elevation/background3 text-text/primary font-semibold text-sm flex items-center justify-center">
               <Image
                 src="/user.png"
                 alt="eth-logo"
@@ -50,8 +51,8 @@ export default function Home() {
                 className="rounded-full"
               />
               bongo.eth
-            </button>
-            <button className="sm:hidden">
+            </Button>
+            <Button className="sm:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -66,7 +67,7 @@ export default function Home() {
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 />
               </svg>
-            </button>
+            </Button>
           </div>
         </div>
       </header>
